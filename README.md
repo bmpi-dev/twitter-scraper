@@ -1,6 +1,6 @@
 # Twitter Scraper
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/n0madic/twitter-scraper.svg)](https://pkg.go.dev/github.com/n0madic/twitter-scraper)
+[![Go Reference](https://pkg.go.dev/badge/github.com/bmpi-dev/twitter-scraper.svg)](https://pkg.go.dev/github.com/bmpi-dev/twitter-scraper)
 
 Twitter's API is annoying to work with, and has lots of limitations —
 luckily their frontend (JavaScript) has it's own API, which I reverse-engineered.
@@ -11,7 +11,7 @@ You can use this library to get the text of any user's Tweets trivially.
 ## Installation
 
 ```shell
-go get -u github.com/n0madic/twitter-scraper
+go get -u github.com/bmpi-dev/twitter-scraper
 ```
 
 ## Usage
@@ -24,7 +24,7 @@ package main
 import (
     "context"
     "fmt"
-    twitterscraper "github.com/n0madic/twitter-scraper"
+    twitterscraper "github.com/bmpi-dev/twitter-scraper"
 )
 
 func main() {
@@ -49,7 +49,7 @@ package main
 import (
     "fmt"
 
-    twitterscraper "github.com/n0madic/twitter-scraper"
+    twitterscraper "github.com/bmpi-dev/twitter-scraper"
 )
 
 func main() {
@@ -72,7 +72,7 @@ package main
 import (
     "context"
     "fmt"
-    twitterscraper "github.com/n0madic/twitter-scraper"
+    twitterscraper "github.com/bmpi-dev/twitter-scraper"
 )
 
 func main() {
@@ -113,7 +113,7 @@ package main
 
 import (
     "fmt"
-    twitterscraper "github.com/n0madic/twitter-scraper"
+    twitterscraper "github.com/bmpi-dev/twitter-scraper"
 )
 
 func main() {
@@ -134,7 +134,7 @@ package main
 import (
     "context"
     "fmt"
-    twitterscraper "github.com/n0madic/twitter-scraper"
+    twitterscraper "github.com/bmpi-dev/twitter-scraper"
 )
 
 func main() {
@@ -155,7 +155,7 @@ package main
 
 import (
     "fmt"
-    twitterscraper "github.com/n0madic/twitter-scraper"
+    twitterscraper "github.com/bmpi-dev/twitter-scraper"
 )
 
 func main() {

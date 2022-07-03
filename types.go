@@ -36,6 +36,7 @@ type (
 		Username         string
 		Videos           []Video
 		SensitiveContent bool
+		LanguageType     string
 	}
 
 	// ProfileResult of scrapping.

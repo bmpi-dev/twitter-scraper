@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
+	twitterscraper "github.com/bmpi-dev/twitter-scraper"
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
-	twitterscraper "github.com/n0madic/twitter-scraper"
 )
 
 var cmpOptions = cmp.Options{
