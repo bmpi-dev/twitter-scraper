@@ -77,6 +77,13 @@ type (
 		Verified             bool     `json:"verified"`
 	}
 
+	professionalUser struct {
+		ProfessionalType	string `json:"professional_type"`
+		Categories	[]struct {
+			Name  string `json:"name"`
+		} `json:"category"`
+	}
+
 	Place struct {
 		ID          string `json:"id"`
 		PlaceType   string `json:"place_type"`

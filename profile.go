@@ -39,6 +39,7 @@ type user struct {
 		User struct {
 			RestID string     `json:"rest_id"`
 			Legacy legacyUser `json:"legacy"`
+			Professional professionalUser `json:"professional"`
 		} `json:"user"`
 	} `json:"data"`
 	Errors []struct {
