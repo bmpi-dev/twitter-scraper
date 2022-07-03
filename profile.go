@@ -32,14 +32,17 @@ type Profile struct {
 	UserID         string
 	Username       string
 	Website        string
+	Category	   string
 }
 
 type user struct {
 	Data struct {
 		User struct {
-			RestID string     `json:"rest_id"`
-			Legacy legacyUser `json:"legacy"`
-			Professional professionalUser `json:"professional"`
+			Result struct {
+				RestID string     `json:"rest_id"`
+				Legacy legacyUser `json:"legacy"`
+				Professional professionalUser `json:"professional"`
+			} `json:"result"`
 		} `json:"user"`
 	} `json:"data"`
 	Errors []struct {
@@ -50,7 +53,7 @@ type user struct {
 // GetProfile return parsed user profile.
 func (s *Scraper) GetProfile(username string) (Profile, error) {
 	var jsn user
-	req, err := http.NewRequest("GET", "https://api.twitter.com/graphql/4S2ihIKfF3xhp-ENxvUAfQ/UserByScreenName?variables=%7B%22screen_name%22%3A%22"+username+"%22%2C%22withHighlightedLabel%22%3Atrue%7D", nil)
+	req, err := http.NewRequest("GET", "https://twitter.com/i/api/graphql/mCbpQvZAw6zu_4PvuAUVVQ/UserByScreenName?variables=%7B%22screen_name%22%3A%22"+username+"%22%2C%22withSafetyModeUserFields%22%3Atrue%2C%22withSuperFollowsUserFields%22%3Atrue%7D", nil)
 	if err != nil {
 		return Profile{}, err
 	}
@@ -64,16 +67,16 @@ func (s *Scraper) GetProfile(username string) (Profile, error) {
 		return Profile{}, fmt.Errorf("%s", jsn.Errors[0].Message)
 	}
 
-	if jsn.Data.User.RestID == "" {
+	if jsn.Data.User.Result.RestID == "" {
 		return Profile{}, fmt.Errorf("rest_id not found")
 	}
-	jsn.Data.User.Legacy.IDStr = jsn.Data.User.RestID
+	jsn.Data.User.Result.Legacy.IDStr = jsn.Data.User.Result.RestID
 
-	if jsn.Data.User.Legacy.ScreenName == "" {
+	if jsn.Data.User.Result.Legacy.ScreenName == "" {
 		return Profile{}, fmt.Errorf("either @%s does not exist or is private", username)
 	}
 
-	return parseProfile(jsn.Data.User.Legacy), nil
+	return parseProfile(jsn.Data.User.Result.Legacy, jsn.Data.User.Result.Professional), nil
 }
 
 // Deprecated: GetProfile wrapper for default scraper

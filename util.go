@@ -144,7 +144,7 @@ func getTweetTimeline(ctx context.Context, query string, maxTweetsNbr int, fetch
 	return channel
 }
 
-func parseProfile(user legacyUser) Profile {
+func parseProfile(user legacyUser, professional professionalUser) Profile {
 	profile := Profile{
 		Avatar:         user.ProfileImageURLHTTPS,
 		Banner:         user.ProfileBannerURL,
@@ -173,6 +173,10 @@ func parseProfile(user legacyUser) Profile {
 
 	if len(user.Entities.URL.Urls) > 0 {
 		profile.Website = user.Entities.URL.Urls[0].ExpandedURL
+	}
+
+	if len(professional.Categories) > 0 {
+		profile.Category = professional.Categories[0].Name
 	}
 
 	return profile

@@ -32,6 +32,7 @@ func (s *Scraper) RequestAPI(req *http.Request, target interface{}) error {
 
 	req.Header.Set("Authorization", "Bearer "+s.bearerToken)
 	req.Header.Set("X-Guest-Token", s.guestToken)
+	req.Header.Set("accept-language", "en")
 
 	// use cookie
 	if len(s.cookie) > 0 && len(s.xCsrfToken) > 0 {
@@ -54,6 +55,10 @@ func (s *Scraper) RequestAPI(req *http.Request, target interface{}) error {
 	if resp.Header.Get("X-Rate-Limit-Remaining") == "0" {
 		s.guestToken = ""
 	}
+
+	// debug by printing resp body
+	// body, err := ioutil.ReadAll(resp.Body)
+	// fmt.Println(string(body))
 
 	return json.NewDecoder(resp.Body).Decode(target)
 }

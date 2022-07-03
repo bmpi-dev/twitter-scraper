@@ -303,7 +303,7 @@ func (timeline *timeline) parseUsers() ([]*Profile, string) {
 	users := make(map[string]Profile)
 
 	for id, user := range timeline.GlobalObjects.Users {
-		users[id] = parseProfile(user)
+		users[id] = parseProfile(user, professionalUser{})
 	}
 
 	var cursor string
